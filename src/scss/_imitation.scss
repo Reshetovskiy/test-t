@@ -1,0 +1,21 @@
+// ~ Example: @extend %elements;
+
+%_elements {
+    content: '';
+    display: block;
+}
+
+%_container {
+    max-width: 320px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+@media #{$sr-min-768} {
+
+    %_container {
+        max-width: 768px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+}

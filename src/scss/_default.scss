@@ -1,0 +1,9 @@
+body {
+    font-size: 16px;
+    line-height: 1;
+    &.modal--open {
+        width: 100vw;
+        height: 100vw;
+        overflow: hidden;
+    }
+}

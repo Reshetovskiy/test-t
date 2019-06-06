@@ -1,0 +1,23 @@
+// @~ Media
+
+$sr-min-768: "screen and (min-width: 768px)";
+
+// @~ Colors
+
+$_description: #eee;
+$_title: #eee;
+$_background: #eee;
+$_border: #eee;
+
+// @~ Fonts
+
+// @~ Mixins
+
+// ~ Example: @include background('url', cover, center, no-repeat);
+
+@mixin background($url, $size: cover, $position: center, $repeat: no-repeat) {
+    background-image: url($url);
+    background-repeat: $repeat;
+    background-size: $size;
+    background-position: $position;
+}

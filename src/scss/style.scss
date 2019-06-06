@@ -1,0 +1,13 @@
+@import "_normalize.scss";
+@import "_default.scss";
+@import "_fonts.scss";
+@import "_variables.scss";
+@import "_imitation.scss";
+
+@import "partials/icons.scss";
+@import "partials/svg_sprite.scss";
+
+@import "templates/_header.scss";
+@import "templates/_footer.scss";
+
+@import "templates/@home/_style.scss";

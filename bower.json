@@ -1,0 +1,15 @@
+{
+  "name": "Gulp start project",
+  "description": "Gulp compiling",
+  "main": "index.js",
+  "license": "ISC",
+  "dependencies": {},
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/vendor",
+    "test",
+    "tests"
+  ]
+}
