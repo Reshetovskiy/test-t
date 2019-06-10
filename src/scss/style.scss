@@ -10,4 +10,6 @@
 @import "templates/_header.scss";
 @import "templates/_footer.scss";
 
-@import "templates/@home/_style.scss";
+@import "components/style.scss";
+
+@import "templates/@home/style.scss";
