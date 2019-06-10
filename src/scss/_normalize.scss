@@ -20,6 +20,11 @@ input, button, textarea {
     outline: none; 
 }
 
+input, textarea {
+    border-radius: 0;
+    box-shadow: none;
+}
+
 button {
     padding: 0;
 }

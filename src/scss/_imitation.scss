@@ -1,8 +1,35 @@
 // ~ Example: @extend %elements;
 
+%_absolute {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+%_flex_center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+%_flex_start {
+    display: flex;
+    align-items: flex-start;
+    align-content: flex-start;
+}
+
 %_elements {
     content: '';
     display: block;
+}
+
+%_object {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
 }
 
 %_container {

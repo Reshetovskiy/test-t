@@ -1,21 +1,31 @@
 // @~ Media
 
+$sr-min-540: "screen and (min-width: 540px)";
 $sr-min-768: "screen and (min-width: 768px)";
 
 // @~ Colors
 
-$_description: #eee;
-$_title: #eee;
+$_footer: #eee;
+$_footer-bottom: #eee;
+
 $_background: #eee;
 $_border: #eee;
+$_button: #eee;
+$_link: #eee;
+$_description: #eee;
+$_title: #eee;
+$_active: #eee;
+$_hover: #eee;
 
 // @~ Fonts
 
+$font: "";
+
 // @~ Mixins
 
-// ~ Example: @include background('url', cover, center, no-repeat);
+// ~ Example: @include _icons('url', cover, center, no-repeat);
 
-@mixin background($url, $size: cover, $position: center, $repeat: no-repeat) {
+@mixin _icons($url, $size: cover, $position: center, $repeat: no-repeat) {
     background-image: url($url);
     background-repeat: $repeat;
     background-size: $size;
