@@ -36,6 +36,10 @@ var gulp          = require('gulp'),
     env           = require('gulp-env'),
     gulpif        = require('gulp-if');
 
+var versionScripts = new Date();
+
+versionScripts = parseInt(versionScripts.getFullYear() + '' + versionScripts.getMonth() + '' + versionScripts.getDay() + '' + versionScripts.getHours());
+
 runSequence.options.ignoreUndefinedTasks = true;
 
 const arg = (argList => {
@@ -145,6 +149,7 @@ gulp.task('html:build', function () {
         .pipe(rigger())
         .pipe(fileInclude())
         .pipe(gulpif(arg.retina, imgRetina(retinaOpts)))
+        .pipe(replace("$$version$$", "?v=" + versionScripts))
         .pipe(gulp.dest(path.build.html))
         .pipe(connect.reload());
 });
@@ -166,16 +171,16 @@ gulp.task('style:build', function () {
 });
 
 gulp.task('sprite', function () {
-	var spriteData = gulp.src(path.src.imgicons)
-		.pipe(spritesmith({
-			imgName: 'icons.png',
-			cssName: 'icons.scss',
-			algorithm: 'binary-tree',
-			cssFormat: 'css',
-			cssTemplate: 'css_template_icons.css.mustache',
-		}));
+    var spriteData = gulp.src(path.src.imgicons)
+        .pipe(spritesmith({
+            imgName: 'icons.png',
+            cssName: 'icons.scss',
+            algorithm: 'binary-tree',
+            cssFormat: 'css',
+            cssTemplate: 'css_template_icons.css.mustache',
+        }));
 
-	spriteData.img.pipe(gulp.dest(path.src.path_img));
+    spriteData.img.pipe(gulp.dest(path.src.path_img));
     spriteData.css.pipe(gulp.dest(path.src.path_sasspartials));
     return;
 });
@@ -183,44 +188,38 @@ gulp.task('sprite', function () {
 gulp.task('svg:sprite:build', function () {
     return gulp.src(path.src.svgicons)
         .pipe(plumber())
-		.pipe(cheerio({
-			run: function ($) {
-				$('[fill]').removeAttr('fill');
-				$('[stroke]').removeAttr('stroke');
-				$('[style]').removeAttr('style');
-			},
-			parserOptions: {xmlMode: true}
-		}))
-		.pipe(replace('&gt;', '>'))
-		.pipe(svgSprite({
-			mode: {
-				symbol: {
-					sprite: '../sprite.svg',
-					render: {
-						scss: {
-							dest: '../../../../' + path.src.path_sasspartials + 'svg_sprite.scss',
-							template: 'css_template_svg_icons.mustache'
-						}
-					}
-				}
-			}
-		}))
-		.pipe(gulp.dest(path.src.path_img));
+        .pipe(cheerio({
+            run: function ($) {
+                $('[fill]').removeAttr('fill');
+                $('[stroke]').removeAttr('stroke');
+                $('[style]').removeAttr('style');
+            },
+            parserOptions: {xmlMode: true}
+        }))
+        .pipe(replace('&gt;', '>'))
+        .pipe(svgSprite({
+            mode: {
+                symbol: {
+                    sprite: '../sprite.svg',
+                    render: {
+                        scss: {
+                            dest: '../../../../' + path.src.path_sasspartials + 'svg_sprite.scss',
+                            template: 'css_template_svg_icons.mustache'
+                        }
+                    }
+                }
+            }
+        }))
+        .pipe(gulp.dest(path.src.path_img));
 });
 
 gulp.task('image:build', function () {
     gulp.src(path.src.img)
         .pipe(plumber())
-        .pipe(gulpif('!*.svg', imagemin({
-            progressive: true,
-            svgoPlugins: [{removeViewBox: false}],
-            use: [pngquant()],
-            interlaced: true
-        })))
         .pipe(gulp.dest(path.build.img))
         .pipe(connect.reload());
 
-	gulp.run('sprite');
+    gulp.run('sprite');
     gulp.run('svg:sprite:build');
     return;
 });
@@ -251,20 +250,20 @@ gulp.task('bower:build', function() {
     var cssfilter = filter(['**/*.css'], {restore: true});
     var jsfilter = filter(['**/*.js'], {restore: true});
 
-	return gulp.src(path.src.bower)
-		.pipe(cssfilter)
-		.pipe(cssfilter.restore)
-		.pipe(mfilter)
+    return gulp.src(path.src.bower)
+        .pipe(cssfilter)
+        .pipe(cssfilter.restore)
+        .pipe(mfilter)
         .pipe(gulp.dest(path.build.bower))
 });
 
 gulp.task('watch', function() {
-	gulp.watch(path.watch.html,  ['html:build']);
-	gulp.watch(path.watch.js,    ['js:build']);
-	gulp.watch(path.watch.style, ['style:build']);
-	gulp.watch(path.watch.img,   ['image:build', 'sprite', 'svg:sprite:build']);
-	gulp.watch(path.watch.fonts, ['fonts:build']);
-	gulp.watch(path.watch.bower, ['bower:build', 'style:build']);
+    gulp.watch(path.watch.html,  ['html:build']);
+    gulp.watch(path.watch.js,    ['js:build']);
+    gulp.watch(path.watch.style, ['style:build']);
+    gulp.watch(path.watch.img,   ['image:build', 'sprite', 'svg:sprite:build']);
+    gulp.watch(path.watch.fonts, ['fonts:build']);
+    gulp.watch(path.watch.bower, ['bower:build', 'style:build']);
 });
 
 gulp.task('build', [
@@ -313,13 +312,12 @@ gulp.task('build:test', function () {
     gulp.src(path.build.css + '**/*.*')
         .pipe(gulpif('*.css', csso()))
         .pipe(gulpif('*.css', cssmin()))
-        .pipe(rename({ suffix: '.min' }))
+        .pipe(rename({ suffix: '.min'}))
         .pipe(gulp.dest(path.test.css));
 
     gulp.src(path.build.js + '**/*.*')
-        // .pipe(gulpif('*.js', uglify()))
         .pipe(gulpif('*.js', uglifyEs()))
-        .pipe(rename({ suffix: '.min' }))
+        .pipe(rename({ suffix: '.min'}))
         .pipe(gulp.dest(path.test.js));
 });
 
@@ -334,7 +332,7 @@ gulp.task('build:watch', [
     'style:build',
     'fonts:build',
     'bower:build',
-	'watch'
+    'watch'
 ]);
 
 gulp.task('server', ['build', 'watch', 'webserver', 'openbrowser']);
@@ -350,21 +348,21 @@ gulp.task('env', function() {
 gulp.task('deploy', ['env'], function () {
     var path = process.env.APP_ENV === 'prod' ? buildpath : testpath;
     var conn = ftp.create( {
-		host:     process.env.FTP_HOST,
-		port:     process.env.FTP_PORT,
-		user:     process.env.FTP_LOGIN,
-		password: process.env.FTP_PASS,
-		parallel: process.env.FTP_PARALLEL,
-		log:      gutil.log
-	} );
+        host:     process.env.FTP_HOST,
+        port:     process.env.FTP_PORT,
+        user:     process.env.FTP_LOGIN,
+        password: process.env.FTP_PASS,
+        parallel: process.env.FTP_PARALLEL,
+        log:      gutil.log
+    } );
 
-	var globs = [
-		path + '/**/*.*'
+    var globs = [
+        path + '/**/*.*'
     ];
 
-	return gulp.src(globs, { base: './' + path, buffer: false })
-		.pipe( conn.newer(process.env.FTP_DIR) )
-		.pipe( conn.dest(process.env.FTP_DIR) );
+    return gulp.src(globs, { base: './' + path, buffer: false })
+        .pipe( conn.newer(process.env.FTP_DIR) )
+        .pipe( conn.dest(process.env.FTP_DIR) );
 });
 
 gulp.task('zip', function (cb) {
@@ -389,7 +387,7 @@ gulp.task('zip', function (cb) {
         './**',
         '.gitignore',
         '.env.example.json'
-    ])
-		.pipe(zip('app.zip'))
-		.pipe(gulp.dest(appPath))
+        ])
+        .pipe(zip('app.zip'))
+        .pipe(gulp.dest(appPath))
 });

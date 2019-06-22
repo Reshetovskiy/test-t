@@ -1,7 +1,15 @@
+html, body {
+    height: 100%;
+}
+
 body {
+    font-family: $font;
     font-weight: 400;
     font-size: 16px;
     line-height: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     &.modal--open {
         width: 100vw;
         height: 100vw;
@@ -15,4 +23,16 @@ body {
         content: '';
         display: block;
     }
+}
+
+.header {
+    flex: 0 0 auto;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+.footer {
+    flex: 0 0 auto;
 }

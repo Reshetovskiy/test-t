@@ -1,0 +1,1 @@
+var modal_open = 'modal--open';

@@ -5,29 +5,66 @@ $sr-min-768: "screen and (min-width: 768px)";
 
 // @~ Colors
 
-$_footer: #eee;
-$_footer-bottom: #eee;
-
-$_background: #eee;
-$_border: #eee;
-$_button: #eee;
-$_link: #eee;
-$_description: #eee;
-$_title: #eee;
-$_active: #eee;
-$_hover: #eee;
+$black: #000;
+$grey: #eee;
 
 // @~ Fonts
 
-$font: "";
+$font: "", sans-serif, arial;
 
 // @~ Mixins
 
-// ~ Example: @include _icons('url', cover, center, no-repeat);
+@mixin container() {
+    max-width: 320px;
+    margin: 0 auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}
 
-@mixin _icons($url, $size: cover, $position: center, $repeat: no-repeat) {
+@mixin container_1300() {
+    max-width: 1260px;
+    margin: 0 auto;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+// ~ Example: @include _images('url', cover, center, no-repeat);
+
+@mixin _images($url, $size: cover, $position: center, $repeat: no-repeat) {
     background-image: url($url);
     background-repeat: $repeat;
     background-size: $size;
     background-position: $position;
+}
+
+@mixin _flex_start() {
+    display: flex;
+    align-items: flex-start;
+    align-content: flex-start;
+}
+
+@mixin _flex_center() {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin _object() {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+@mixin _elements() {
+    content: '';
+    display: block;
+}
+
+@mixin _absolute() {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }

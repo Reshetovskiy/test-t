@@ -13,11 +13,11 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6, figure, p, ul, label {
-    margin: 0; 
+    margin: 0;
 }
 
 input, button, textarea { 
-    outline: none; 
+    outline: none;
 }
 
 input, textarea {
@@ -27,18 +27,22 @@ input, textarea {
 
 button {
     padding: 0;
+    cursor: pointer;
 }
 
 a {
-    text-decoration: none; 
+    text-decoration: none;
+    &:hover {
+        text-decoration: none;
+    }
 }
 
 ul {
-    padding-left: 0; 
+    padding-left: 0;
 }
 
 li {
-    list-style: none; 
+    list-style: none;
 }
 
 dl, dd {
