@@ -1,0 +1,94 @@
+.cart {
+    margin-right: 30px;
+    margin-bottom: 32px;
+    border: 1px solid #e2e2e2;
+    width: 300px;
+    font-family: 'HelveticaNeueCyr';
+    position: relative;
+    overflow: hidden;
+    &__container {
+        padding: 20px 20px 20px 20px;
+    }
+    &__status {
+        position: absolute;
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        padding: 7px 14px 7px 9px;;
+        font-size: 12px;
+        text-transform: uppercase;
+        width: 150px;
+        height: 50px;
+        border-radius: 30px;
+        background-color: #ffd304;
+        top: -22px;
+        left: -100px;
+        &--sale {
+            background-color:  #f30a2b;
+        }
+    }
+    &__frame {
+        height: 225px;
+        margin-bottom: 20px;
+    }
+    &__img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
+    }
+    &__description {
+        margin-bottom: 17px;
+        font-weight: 400;
+    }
+    &__description-category {
+        font-size: 16px;
+        text-transform: uppercase;
+        color: #aeaeae;
+        margin-bottom: 12px;
+        font-weight: 400;
+    }
+    &__description-title {
+        text-decoration: underline;
+        line-height: 21px;
+        color: #2175cc;
+    }
+}
+
+.cart-footer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    &__price {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-content: space-between;
+        &-old {
+            color: #aeaeae;
+            font-size: 16px;
+            display: block; 
+            text-transform: uppercase;
+        }
+        &-actual {
+            color: #272727;
+            display: block;
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: -1px;
+        }
+        &-cents {
+            letter-spacing: -1px;
+        }
+    }
+    &__basket {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 41px;
+        background-color: #ffd304;
+        padding: 0 37px;
+        font-weight: 500;
+        color: #101010;
+    }
+}

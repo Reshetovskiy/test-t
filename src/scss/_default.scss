@@ -17,14 +17,7 @@ body {
     }
 }
 
-* {
-    &:after,
-    &:before {
-        content: '';
-        display: block;
-    }
-}
-
+ 
 .header {
     flex: 0 0 auto;
 }
